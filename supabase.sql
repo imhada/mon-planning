@@ -1,6 +1,5 @@
 -- W.A.L.T.E.R : base Supabase (même projet que H.A.Z.E.L, tables à part)
 -- À coller une seule fois dans Supabase > SQL Editor, puis Run.
--- Avant de lancer : remplace 1234 (tout en bas) par le code que tu veux pour Walter.
 
 create extension if not exists pgcrypto with schema extensions;
 
@@ -75,6 +74,8 @@ revoke execute on function public.save_walter(text, jsonb) from public;
 grant execute on function public.get_walter(text) to anon, authenticated;
 grant execute on function public.save_walter(text, jsonb) to anon, authenticated;
 
--- Ton code Walter (remplace 1234). Pour le changer plus tard : relance seulement ces 3 lignes.
-insert into public.walter_acces(id, code_hash) values (1, crypt('1234', gen_salt('bf')))
-  on conflict (id) do update set code_hash = excluded.code_hash, essais = 0, bloque_jusqu = null;
+-- Code d'accès : déjà enregistré. Le script ci-dessus peut être relancé sans y toucher.
+-- Pour CHANGER le code, lance seule la commande ci-dessous en retirant les deux tirets du début
+-- de chaque ligne et en remplaçant NOUVEAU_CODE :
+-- insert into public.walter_acces(id, code_hash) values (1, crypt('NOUVEAU_CODE', gen_salt('bf')))
+--   on conflict (id) do update set code_hash = excluded.code_hash, essais = 0, bloque_jusqu = null;
