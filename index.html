@@ -7,9 +7,9 @@
   <meta name="apple-mobile-web-app-title" content="W.A.L.T.E.R">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#F7F8FA">
+  <meta name="theme-color" content="#EEF0FA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
   <style>
@@ -367,6 +367,174 @@
   #toast.on{opacity:1;transform:translate(-50%,0)}
   @media (prefers-reduced-motion:no-preference){#toast{transition:opacity .2s,transform .2s}}
   @media (min-width:900px){#toast{bottom:28px}}
+
+  /* ===== DA commune avec H.A.Z.E.L : lavande, indigo vers violet, cartes très arrondies, pilules ===== */
+  :root{
+    --navy:#1A2138; --bg:#EEF0FA; --card:#FFFFFF; --cyan:#5B5CEB; --cyan-soft:#ECEBFD; --cyan-mid:#B9B8F8;
+    --grey:#5E6B8A; --rail:#ECEEF6; --up:#2E9E6A; --up-soft:#E5F5EC; --down:#D14343; --down-soft:#FBE8E8;
+    --hover:#E7E9F3; --soft:#F3F4FA; --grad:linear-gradient(135deg,#6366F1,#8B5CF6);
+    --shadow:0 1px 2px rgba(60,64,140,.04),0 12px 32px rgba(76,70,180,.08);
+    --shadow-lg:0 4px 12px rgba(60,64,140,.10),0 22px 48px rgba(60,64,140,.18);
+    --font:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --display:var(--font); --r:24px; --navw:84px;
+  }
+  body{font-family:var(--font);background:
+    radial-gradient(1100px 600px at 0% -10%,#DCE3FF 0,transparent 60%),
+    radial-gradient(900px 520px at 100% 0%,#FBE3F1 0,transparent 55%),
+    radial-gradient(1000px 700px at 50% 110%,#DDEBFF 0,transparent 60%),
+    #F3F4FB fixed}
+  @media (max-width:899px){body{padding-bottom:116px}}
+  h1{font-family:var(--font);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  h2{font-size:1.08rem;font-weight:700}
+  button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline-color:var(--cyan)}
+
+  /* Composants */
+  .card,.kpi,.tuile,.plat,.day{border-radius:var(--r)}
+  .card,.tuile{box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.7)}
+  .card{padding:22px}
+  .chip{background:var(--cyan-soft);color:var(--cyan);border-radius:999px;padding:8px 14px}
+  .chip:hover{background:var(--cyan);color:#fff}
+  .btn{background:var(--grad);color:#fff;border-radius:999px;padding:12px 22px;font-weight:600}
+  .btn:hover{filter:brightness(1.07)}
+  .btn.xl{border-radius:999px;font-weight:700}
+  .btn.plain{background:var(--card);color:var(--navy);box-shadow:inset 0 0 0 1px var(--rail)}
+  .btn.plain:hover{background:var(--hover)}
+  .btn.soft{background:var(--cyan-soft);color:var(--cyan)}
+  .btn.danger{background:var(--down-soft);color:var(--down)}
+  .add{background:var(--card);color:var(--navy);border-radius:999px;padding:12px 18px;text-align:center;font-weight:600;box-shadow:inset 0 0 0 1px var(--rail)}
+  .add:hover{background:var(--hover)}
+  .iconbtn{border-radius:50%;width:42px;height:42px;box-shadow:var(--shadow)}
+  .iconbtn:hover,.sync:hover{background:var(--hover)}
+  .sync{padding:8px 14px;font-weight:500}
+  .seg,.pills{background:#F1F2F9;border-radius:999px;padding:4px;gap:4px;box-shadow:none}
+  .pills{display:inline-flex;align-self:flex-start;max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .seg button,.pills button{background:none;border-radius:999px;padding:8px 14px;color:var(--grey);font-weight:500;box-shadow:none;white-space:nowrap}
+  .seg button[aria-pressed="true"],.pills button[aria-pressed="true"]{background:var(--grad);color:#fff;font-weight:600}
+  .field input,.field select,.in{background:var(--soft);border-radius:14px;padding:13px 15px}
+  .search{border-radius:999px;box-shadow:var(--shadow);padding:0 16px}
+  .info{background:rgba(255,255,255,.7);border-radius:18px;color:var(--grey)}
+  .pill.ok{background:var(--up-soft);color:var(--up)}
+
+  /* Feuilles */
+  .sheet-bg{background:rgba(26,33,56,.35)}
+  .sheet{border-radius:28px 28px 0 0}
+  @media (min-width:640px){.sheet{border-radius:28px}}
+  .lrow .x{border-radius:50%;background:var(--soft)}
+
+  /* Navigation : flottante sur téléphone, latérale sur ordinateur */
+  .nav{box-shadow:var(--shadow-lg)}
+  .navbtn{color:var(--navy);font-size:.72rem;font-weight:500}
+  .navbtn .sq{border-radius:999px}
+  .navbtn[aria-selected="true"]{color:var(--cyan);font-weight:600}
+  .navbtn[aria-selected="true"] .sq,.navbtn[aria-selected="true"]:hover .sq{background:var(--hover);color:var(--cyan)}
+  .navbtn:hover .sq{background:var(--soft)}
+  @media (max-width:899px){
+    .nav{left:max(14px,env(safe-area-inset-left,0px));right:max(14px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));border-radius:999px;padding:8px 10px}
+    .navbtn{flex:1;border-radius:999px;padding:6px 0;min-width:0}
+    .navbtn[aria-selected="true"]{background:var(--hover)}
+    .navbtn[aria-selected="true"] .sq{background:none}
+    .navbtn .sq{width:auto;height:26px}
+    #toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+  }
+  @media (min-width:900px){
+    .nav{border-radius:0 28px 28px 0}
+    .navbtn .sq{width:52px;height:40px}
+    .brand{background:linear-gradient(135deg,#6366F1,#EC4899);border-radius:50%;width:44px;height:44px}
+  }
+
+  /* Séance du jour : carte sombre façon carte bancaire, disque de fonte en filigrane */
+  .hero{background:linear-gradient(135deg,#1E1B4B 0%,#3730A3 50%,#6D28D9 100%);border-radius:var(--r);box-shadow:0 18px 40px rgba(49,46,129,.30);padding:24px}
+  .hero::before{content:"";position:absolute;inset:auto auto -130px -90px;width:280px;height:280px;border-radius:50%;background:radial-gradient(closest-side,rgba(236,72,153,.35),transparent);pointer-events:none}
+  .hero::after{background:radial-gradient(circle,transparent 0 19px,rgba(255,255,255,.26) 20px 31px,rgba(255,255,255,.07) 32px 84px,rgba(255,255,255,.20) 85px 91px,rgba(255,255,255,.05) 92px 124px,transparent 125px)}
+  .hero.repos{background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 55%,#C026D3 100%)}
+  .hk{color:rgba(255,255,255,.78);font-weight:500}
+  .ht{font-size:clamp(2.6rem,9vw,3.4rem);line-height:1;font-weight:800;letter-spacing:-.03em;text-shadow:0 2px 12px rgba(0,0,0,.12)}
+  .hero.repos .ht{color:#fff}
+  .hs,.hstats span{color:rgba(255,255,255,.75)}
+  .hstats b{font-size:1.6rem;font-weight:800;letter-spacing:-.02em}
+  .hnote{color:#C7D2FE} .hnote.ok{color:#A7F3D0}
+  .hero .btn{background:#fff;color:#4338CA;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+  .hero .ghost{background:rgba(255,255,255,.16);border-radius:999px;font-weight:600}
+  .hero .ghost:hover{background:rgba(255,255,255,.26)}
+
+  /* Nutrition */
+  .jv b{font-weight:800;letter-spacing:-.02em;font-size:1.5rem}
+  .jbar{height:12px}
+  .jf{border-radius:999px;background:var(--rail)}
+  .jf .m{background:var(--grad)} .jf .p{background:#D4D3FB}
+  .legend i{border-radius:50%}
+  .legend i.m{background:#6366F1} .legend i.p{background:#D4D3FB}
+  .jbar i{background:var(--navy);width:3px;border-radius:2px;top:-5px;bottom:-5px}
+  .jm.warn{color:#B45309}
+
+  /* Tuiles semaine et poids */
+  .tuile{padding:16px 18px;gap:8px}
+  .tuile:hover{background:#FAFAFF}
+  .big{font-weight:800;letter-spacing:-.03em;font-size:2rem}
+  .tico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--k),color-mix(in srgb,var(--k) 55%,#fff));box-shadow:0 6px 14px color-mix(in srgb,var(--k) 35%,transparent)}
+  .pip.p i{box-shadow:inset 0 0 0 2px #6366F1}
+  .pip.f i{background:var(--grad)}
+
+  /* Journée */
+  .tl .d{background:#DADDEB}
+  .tl.k-seance .d{background:#6366F1}
+  .tl.now .d{background:#8B5CF6;box-shadow:0 0 0 3px var(--card),0 0 0 7px rgba(139,92,246,.22)}
+  .nowl::after{background:linear-gradient(90deg,#6366F1,#8B5CF6)}
+  .chk{border-radius:50%;background:var(--soft);color:#9AA3BD}
+  .chk:hover{background:var(--hover)}
+  .chk.on{background:var(--up-soft);color:var(--up)}
+
+  /* Semaine */
+  .day{border-radius:20px}
+  .day .hit{border-radius:20px}
+  .day.today{box-shadow:0 0 0 2px #6366F1,var(--shadow)}
+  .ev{border-radius:999px;padding:6px 11px}
+  .ev.s{background:var(--grad);color:#fff}
+  .ev.s.fait{background:var(--up-soft);color:var(--up)}
+  .ev.r{background:var(--cyan-soft);color:var(--cyan)}
+  .ev.o{background:var(--soft)}
+  .ev.rl{background:var(--card);border-radius:12px}
+  @media (min-width:900px){
+    .day{background:var(--soft)}
+    .day.today{background:var(--cyan-soft);box-shadow:inset 0 0 0 2px #6366F1}
+    main.planning .day.today{box-shadow:0 0 0 2px #6366F1,var(--shadow)}
+    main.planning .ev.rl{background:var(--soft)}
+  }
+
+  /* Séances et cuisine */
+  .sname{font-family:var(--font);font-weight:800;letter-spacing:-.02em;font-size:1.5rem}
+  .sets{background:var(--cyan-soft);color:var(--cyan);border-radius:999px}
+  .plat{border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.7)}
+  .card .plat{background:#F6F7FC;border:0}
+  .plat .m span{border-radius:999px;background:var(--soft)}
+  .card .plat .m span{background:var(--card)}
+  .plat .m span.p{background:var(--cyan-soft);color:var(--cyan)}
+  .plat .b button{background:var(--cyan-soft);color:var(--cyan);border-radius:999px}
+  .plat .b button:hover{background:var(--cyan);color:#fff}
+  .plat .b button.ed{border-radius:50%;background:var(--soft);color:var(--grey)}
+  .plat .b button.ed:hover{background:var(--hover);color:var(--navy)}
+
+  /* Mode séance */
+  .whead{background:linear-gradient(135deg,#1E1B4B 0%,#3730A3 50%,#6D28D9 100%)}
+  .wt{font-family:var(--font);font-weight:800;letter-spacing:-.03em;font-size:2.2rem}
+  .wcount b{font-family:var(--font);font-weight:800}
+  .wclose,.wcount{color:rgba(255,255,255,.78)}
+  .wbar{background:rgba(255,255,255,.16);border-radius:999px}
+  .wbar span{background:linear-gradient(90deg,#A5B4FC,#F0ABFC);border-radius:999px}
+  .wset .sn{font-family:var(--font);font-weight:800}
+  .step{background:var(--soft);border-radius:999px}
+  .step input{font-weight:700}
+  .setok{border-radius:50%;background:var(--soft);color:#9AA3BD}
+  .setok:hover{background:var(--up-soft);color:var(--up)}
+  .wset.done .setok{background:var(--up);color:#fff}
+  .rest{background:linear-gradient(135deg,#1E1B4B,#4338CA);border-radius:999px;padding:6px 6px 6px 18px}
+  .rest b{font-family:var(--font);font-weight:800;font-size:1.4rem}
+  .rest button{border-radius:999px}
+  .rest.fini{background:var(--up)}
+
+  #toast{background:var(--navy);border-radius:999px;padding:11px 18px}
+  .login{border-radius:var(--r)}
+  .thead{display:flex;align-items:center;gap:10px}
   </style>
 </head>
 <body>
@@ -606,8 +774,8 @@ function vTuiles(){
     return `<span class="pip${s?(j.seanceFaite?" f":" p"):""}${d===t?" t":""}"><i></i>${"LMMJVSD"[i]}</span>`}).join("");
   const reste=pd?Math.round((obj-pd.kg)*10)/10:null;
   return `<div class="a-tuiles tuiles">
-    <button class="tuile" data-act="tab" data-id="planning"><span class="tk">Séances de la semaine</span><b class="big">${w.faites}<small> / ${w.prevues}</small></b><span class="pips" aria-hidden="true">${pips}</span></button>
-    <button class="tuile" data-act="poids"><span class="tk">Poids</span><b class="big">${pd?num(pd.kg):"Noter"}${pd?"<small> kg</small>":""}</b><span class="tk">${pd?(reste>0?`Encore ${num(reste)} kg avant ${num(obj)} kg`:`Objectif de ${num(obj)} kg atteint`):`Objectif ${num(obj)} kg`}</span></button>
+    <button class="tuile" data-act="tab" data-id="planning"><span class="thead"><span class="tico" style="--k:#6366F1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span><span class="tk">Séances de la semaine</span></span><b class="big">${w.faites}<small> / ${w.prevues}</small></b><span class="pips" aria-hidden="true">${pips}</span></button>
+    <button class="tuile" data-act="poids"><span class="thead"><span class="tico" style="--k:#22C55E"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="4"/><path d="M8.5 9.5a5 5 0 0 1 7 0L12 13z"/></svg></span><span class="tk">Poids</span></span><b class="big">${pd?num(pd.kg):"Noter"}${pd?"<small> kg</small>":""}</b><span class="tk">${pd?(reste>0?`Encore ${num(reste)} kg avant ${num(obj)} kg`:`Objectif de ${num(obj)} kg atteint`):`Objectif ${num(obj)} kg`}</span></button>
   </div>`;
 }
 function vHero(d){
